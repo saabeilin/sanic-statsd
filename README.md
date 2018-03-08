@@ -23,7 +23,7 @@ from sanic_statsd import SanicStatsD
 from yourapp.stats import configured_statsd_client as statsd
 
 app = Sanic()
-auth = SanicStatsD(app, statsd=statsd, tags=['app:{}'.format(__name__)])
+SanicStatsD(app, statsd=statsd, tags=['app:{}'.format(__name__)])
 
 
 @app.route("/")
