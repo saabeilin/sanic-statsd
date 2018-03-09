@@ -4,7 +4,6 @@ from __future__ import absolute_import
 from __future__ import print_function
 
 import io
-import re
 from glob import glob
 from os.path import basename
 from os.path import dirname
@@ -20,11 +19,6 @@ def read(*names, **kwargs):
         encoding=kwargs.get('encoding', 'utf8')
     ).read()
 
-
-install_requires = [
-    l for l in open(join(dirname(__file__), 'requirements.txt')).read().split('\n')
-    if l and not l.startswith('#')
-]
 
 setup(
     name='sanic-statsd',
@@ -63,5 +57,7 @@ setup(
     keywords=[
         'sanic', 'statsd', 'datadog'
     ],
-    install_requires=install_requires
+    install_requires=[
+        'sanic'
+    ]
 )
