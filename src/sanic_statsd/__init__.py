@@ -20,10 +20,10 @@ class SanicStatsD:
         app.register_middleware(self.statsd_submit_timers, 'response')
 
     async def statsd_start_timers(self, request):
-        request['started_at'] = time.time()
+        request.ctx.started_at = time.time()
 
     async def statsd_submit_timers(self, request, response):
-        elapsed = time.time() - request['started_at']
+        elapsed = time.time() - request.ctx
         tags = [
             'method:{}'.format(request.method.lower()),
             'uri_template:{}'.format(request.uri_template)
