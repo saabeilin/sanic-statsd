@@ -23,7 +23,7 @@ class SanicStatsD:
         request.ctx.started_at = time.time()
 
     async def statsd_submit_timers(self, request, response):
-        elapsed = time.time() - request.ctx
+        elapsed = time.time() - request.ctx.started_at
         tags = [
             'method:{}'.format(request.method.lower()),
             'uri_template:{}'.format(request.uri_template)
